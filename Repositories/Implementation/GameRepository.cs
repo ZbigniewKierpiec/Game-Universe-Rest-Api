@@ -39,9 +39,35 @@ namespace Game_Universe.API.Repositories.Implementation
 
         }
 
-        public async Task<IEnumerable<Game>> GetAllGamesAsync()
+        public async Task<IEnumerable<Game>> GetAllGamesAsync(string? query = null)
         {
-          return await dbContext.Game.ToListAsync();
+
+
+            // Query Database
+
+           var games =  dbContext.Game.AsQueryable();
+
+            // Filtering
+
+            if (string.IsNullOrWhiteSpace(query)== false)
+            {
+                games = games.Where(x => x.Name.Contains(query));
+            
+            }
+
+            // Sorting
+
+
+            //Pagination
+
+            return await games.ToListAsync();
+
+          // return await dbContext.Game.ToListAsync();
+
+
+
+
+
         }
 
         public async Task<Game?> GetById(Guid id)

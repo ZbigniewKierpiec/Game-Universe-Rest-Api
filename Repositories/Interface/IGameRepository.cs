@@ -8,7 +8,7 @@ namespace Game_Universe.API.Repositories.Interface
 
         Task<Game> CreateAsync(Game game);
 
-        Task<IEnumerable<Game>>  GetAllGamesAsync();
+        Task<IEnumerable<Game>>  GetAllGamesAsync(string? query = null);
 
 
         Task<Game?>  GetById(Guid id);

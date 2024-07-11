@@ -81,3 +81,4 @@ C:\Users\zbigniew.kierpiec\Desktop\Game Universe\Game-Universe-Api\Game Universe
 C:\Users\zbigniew.kierpiec\Desktop\Game Universe\Game-Universe-Api\Game Universe.API\Game Universe.API\obj\Debug\net7.0\Game Universe.API.pdb
 C:\Users\zbigniew.kierpiec\Desktop\Game Universe\Game-Universe-Api\Game Universe.API\Game Universe.API\obj\Debug\net7.0\Game Universe.API.genruntimeconfig.cache
 C:\Users\zbigniew.kierpiec\Desktop\Game Universe\Game-Universe-Api\Game Universe.API\Game Universe.API\obj\Debug\net7.0\ref\Game Universe.API.dll
+C:\Users\zbigniew.kierpiec\Desktop\Game Universe\Game-Universe-Api\Game Universe.API\Game Universe.API\obj\Debug\net7.0\Game Universe.API.sourcelink.json
