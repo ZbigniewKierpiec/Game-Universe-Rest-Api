@@ -39,7 +39,7 @@ namespace Game_Universe.API.Repositories.Implementation
 
         }
 
-        public async Task<IEnumerable<Game>> GetAllGamesAsync(string? query = null)
+        public async Task<IEnumerable<Game>> GetAllGamesAsync(string? query = null , string? sortBy=null , string? sortDirection = null)
         {
 
 
@@ -56,6 +56,47 @@ namespace Game_Universe.API.Repositories.Implementation
             }
 
             // Sorting
+          
+            if (!string.IsNullOrWhiteSpace(sortBy))
+            {
+                bool isAsc = string.Equals(sortDirection, "asc", StringComparison.OrdinalIgnoreCase);
+
+                if (string.Equals(sortBy, "Price", StringComparison.OrdinalIgnoreCase))
+                {
+                    games = isAsc ? games.OrderBy(x => x.Price) : games.OrderByDescending(x => x.Price);
+                }
+               
+                else if (string.Equals(sortBy, "Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Trim the names to ensure correct sorting
+                    games = isAsc ? games.OrderBy(x => x.Name.Trim()) : games.OrderByDescending(x => x.Name.Trim());
+                }
+
+
+                else if (string.Equals(sortBy, "Rating", StringComparison.OrdinalIgnoreCase))
+                {
+                    games = isAsc ? games.OrderBy(x => x.Rating) : games.OrderByDescending(x => x.Rating);
+                }
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             //Pagination

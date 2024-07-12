@@ -68,9 +68,12 @@ namespace Game_Universe.API.Controllers
 
         [HttpGet]
      
-        public async Task<IActionResult> GetAllGames([FromQuery] string? query )
+        public async Task<IActionResult> GetAllGames(
+            [FromQuery] string? query,
+            [FromQuery] string? sortBy,
+            [FromQuery]string? sortDirection)
         {
-          var games =   await gameRepository.GetAllGamesAsync(query);
+          var games =   await gameRepository.GetAllGamesAsync(query,sortBy,sortDirection);
 
             // Map Domain model to DTO
             var response = new List<GameDto>();
