@@ -2,6 +2,7 @@
 using Game_Universe.API.Models.Domain;
 using Game_Universe.API.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Game_Universe.API.Repositories.Implementation
 {
@@ -39,7 +40,7 @@ namespace Game_Universe.API.Repositories.Implementation
 
         }
 
-        public async Task<IEnumerable<Game>> GetAllGamesAsync(string? query = null , string? sortBy=null , string? sortDirection = null)
+        public async Task<IEnumerable<Game>> GetAllGamesAsync(string? query = null , string? sortBy=null , string? sortDirection = null , int?pageNumber=1,int?pageSize=100)
         {
 
 
@@ -80,26 +81,18 @@ namespace Game_Universe.API.Repositories.Implementation
 
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            /////////////////////////////
 
             //Pagination
+
+
+             var skipResults = (pageNumber - 1) * pageSize;
+             games = games.Skip(skipResults ?? 0).Take(pageSize ?? 100);
+
+
+
+
+            //////////////////
 
             return await games.ToListAsync();
 
@@ -114,6 +107,16 @@ namespace Game_Universe.API.Repositories.Implementation
         public async Task<Game?> GetById(Guid id)
         {
            return await dbContext.Game.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<int> GetCount()
+        {
+           
+
+             return await dbContext.Game.CountAsync();
+
+
+
         }
 
         public async Task<Game?> UpdateAsync(Game game)

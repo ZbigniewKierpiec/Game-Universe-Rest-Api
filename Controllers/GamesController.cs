@@ -71,9 +71,14 @@ namespace Game_Universe.API.Controllers
         public async Task<IActionResult> GetAllGames(
             [FromQuery] string? query,
             [FromQuery] string? sortBy,
-            [FromQuery]string? sortDirection)
+            [FromQuery]string? sortDirection,
+            [FromQuery] int? pageNumber,
+            [FromQuery]int? pageSize
+
+            )
+            
         {
-          var games =   await gameRepository.GetAllGamesAsync(query,sortBy,sortDirection);
+          var games =   await gameRepository.GetAllGamesAsync(query,sortBy,sortDirection , pageNumber , pageSize);
 
             // Map Domain model to DTO
             var response = new List<GameDto>();
@@ -215,9 +220,18 @@ namespace Game_Universe.API.Controllers
             };
             return Ok(response);
         }
-        
 
 
+        //Get
+        [HttpGet]
+        [Route("count")]
+        public async Task<IActionResult> GetGamesTotal()
+        {
+
+            var count = await gameRepository.GetCount();
+            return Ok(count);
+
+        }
 
 
 
